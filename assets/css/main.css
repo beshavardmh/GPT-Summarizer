@@ -1,0 +1,329 @@
+.gpts.gpts-hidden,
+.gpts-overlay.gpts-hidden {
+    display: none;
+}
+
+.gpts-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 9999998;
+    background-color: black;
+    opacity: .7;
+}
+
+.gpts {
+    font-family: sans-serif;
+    width: 400px;
+    position: fixed;
+    max-height: calc(100vh - 60px);
+    z-index: 9999999;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    right: 30px;
+    top: 30px;
+    overflow: hidden;
+    direction: ltr;
+    display: flex;
+    flex-direction: column;
+}
+
+.gpts p {
+    margin: 0;
+}
+
+.gpts-close {
+    cursor: pointer;
+}
+
+.gpts-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 4px 10px;
+    border-bottom: 1px solid #ececec;
+    background-color: #efe5fe;
+}
+
+.gpts-content {
+    overflow-y: auto;
+    position: relative;
+    flex: 3;
+    padding: 16px;
+    font-size: 14px;
+}
+
+.gpts-content p {
+    font-size: 14px;
+}
+
+.gpts-loading {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.gpts-head .gpts-ext-logo {
+    display: flex;
+    align-items: center;
+}
+
+.gpts-head .gpts-ext-logo .gpts-ext-name {
+    margin-left: 5px;
+    font-size: 15px;
+}
+
+.gpts-head svg {
+    width: 20px !important;
+}
+
+.gpts-authorize {
+    min-height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    line-height: 1.6;
+}
+
+.gpts-authorize .gpts-auth-link {
+    color: #974bea;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.gpts-overview {
+    min-height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+.gpts-overview p {
+    margin: 0;
+}
+
+.gpts-generate-btn {
+    background-color: #974bea;
+    padding: 2px;
+    min-width: 160px;
+    color: white;
+    font-weight: bold;
+    border-radius: 8px;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    margin: 16px auto 0 auto;
+}
+
+.gpts-generate-btn svg {
+    width: 19px;
+    margin-left: 3px;
+}
+
+.gpts-generate-btn svg * {
+    fill: white;
+    stroke: #87fd9d;
+}
+
+.lds-ripple {
+    display: inline-block;
+    position: relative;
+    width: 80px;
+    height: 80px;
+}
+
+.lds-ripple div {
+    position: absolute;
+    border: 4px solid #ae86e9;
+    opacity: 1;
+    border-radius: 50%;
+    animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+}
+
+.lds-ripple div:nth-child(2) {
+    animation-delay: -0.5s;
+}
+
+@keyframes lds-ripple {
+    0% {
+        top: 36px;
+        left: 36px;
+        width: 0;
+        height: 0;
+        opacity: 0;
+    }
+
+    4.9% {
+        top: 36px;
+        left: 36px;
+        width: 0;
+        height: 0;
+        opacity: 0;
+    }
+
+    5% {
+        top: 36px;
+        left: 36px;
+        width: 0;
+        height: 0;
+        opacity: 1;
+    }
+
+    100% {
+        top: 0px;
+        left: 0px;
+        width: 72px;
+        height: 72px;
+        opacity: 0;
+    }
+}
+
+.gpts-summary-text {
+    border: 1px solid #ccc;
+    padding: 10px 14px 24px 10px;
+    line-height: 1.6;
+    text-align: justify;
+    border-radius: 10px;
+    background-color: #f8f8f8;
+    user-select: text;
+}
+
+.gpts-summary-options {
+    position: relative;
+    top: -16px;
+    text-align: center;
+    margin-bottom: -16px;
+}
+
+.gpts-summary-option {
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    background-color: white;
+    display: inline-flex;
+    margin: 0 5px;
+    cursor: pointer;
+}
+
+.gpts-summary-option svg {
+    width: 22px;
+}
+
+.gpts-summary-options-action {
+    text-align: center;
+}
+
+.gpts-summary-options-action>* {
+    margin-top: 16px;
+}
+
+.gpts-summary-options-action-translate {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.gpts-summary-options-action-translate-submit {
+    background-color: #0ab437;
+    color: white;
+    border-radius: 4px;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    margin-left: 10px;
+}
+
+.gpts-summary-options-action-translate-submit.disabled {
+    opacity: .5;
+}
+
+.gpts-summary-options-action-translate select {
+    height: 30px;
+    min-width: 140px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 0;
+}
+
+.gpts-footer {
+    font-size: 13px;
+    padding: 10px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f8f8f8;
+    border-top: 1px solid #eee;
+}
+
+.gpts-rate {
+    display: flex;
+    align-items: center;
+}
+
+.gpts-rate {
+    color: inherit;
+}
+
+.gpts-rate svg {
+    margin-right: 3px;
+    width: 18px;
+    height: 18px;
+}
+
+.gpts-socials a {
+    background-color: #2c2c2c;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    border-radius: 4px;
+    margin-left: 3px;
+}
+
+.gpts-socials a svg {
+    width: 16px;
+    height: 16px;
+}
+
+.gpts-socials a svg path[stroke="black"] {
+    stroke: white;
+}
+
+.gpts-socials a svg path[fill="black"] {
+    fill: white;
+}
+
+.gpts-error {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80px;
+}
+
+.gpts-error-text {
+    flex: 1;
+    background-color: #fff1f1;
+    padding: 16px;
+    color: red;
+    text-align: center;
+    border: 1px solid red;
+    border-radius: 10px;
+}
