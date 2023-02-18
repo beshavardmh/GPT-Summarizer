@@ -11,15 +11,14 @@
         "128": "assets/icons/icon-128.png"
     },
     "background": {
-        "service_worker": "background.js",
+        "service_worker": "background/background.js",
         "type": "module"
     },
     "web_accessible_resources": [
         {
             "resources": [
                 "assets/icons/*.png",
-                "assets/css/main.css",
-                "readability.js"
+                "assets/css/main.css"
             ],
             "matches": [
                 "<all_urls>"
