@@ -1,16 +1,21 @@
+// Display summary state
 const showSummaryState = (response) => {
+    // Return if main popup not exists
     if (!document.querySelector('.gpts .gpts-content')) return;
 
+    // Create summary state DOM and put it inside the popup content
     const dom = `<div class="gpts-summary">
                     <div class="gpts-summary-text" id="gpts-summary-text">${response}</div>
                 </div>`;
-
     document.querySelector('.gpts .gpts-content').innerHTML = dom;
 }
 
+// Display summary options after summary is completed
 const showSummaryOptions = (translateCallback, regenerateCallback) => {
+    // Return if summary not exists
     if (!document.querySelector('.gpts .gpts-content .gpts-summary')) return;
 
+    // Create summary options DOM and append it to the popup content
     const dom = `<div class="gpts-summary-options"> 
                     <div class="gpts-summary-option gpts-summary-option-copy" title="Copy">
                         <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -68,20 +73,23 @@ const showSummaryOptions = (translateCallback, regenerateCallback) => {
                 </div>
 
                 <div class="gpts-summary-options-action"></div>`;
-
     document.querySelector('.gpts .gpts-content .gpts-summary').insertAdjacentHTML('beforeend', dom);
 
+    // Handle options actions
     copyOptionAction();
     speechOptionAction();
     translateOptionAction(translateCallback);
     regenerateOptionAction(regenerateCallback);
 }
 
+// The following function is responsible for copying the summary text to the clipboard when the copy button is clicked
 const copyOptionAction = () => {
+    // Creating an HTML element with the message to be displayed when the text is copied
     const actionDom = `<div class="gpts-summary-options-action-copy">
                             The summary text was copied!
                         </div>`;
 
+    // Adding a click event to the copy button, copying the text to clipboard, and displaying the message
     dynamicDomEvent('click', '.gpts-summary-option-copy', () => {
         document.querySelector('.gpts-summary-options-action').innerHTML = actionDom;
         document.querySelector('.gpts-content').scrollTop = document.querySelector('.gpts-content').scrollHeight;
@@ -89,7 +97,9 @@ const copyOptionAction = () => {
     });
 }
 
+// The following function is responsible for speaking the summary text when the speech button is clicked
 const speechOptionAction = () => {
+    // Creating HTML elements with messages to be displayed when the browser doesn't support text to speech, and when speech is not available for the summary text
     const browserNotSupportDom = `<div class="gpts-summary-options-action-copy">
                                         Your browser doesn't support text to speech!
                                     </div>`;
@@ -99,10 +109,12 @@ const speechOptionAction = () => {
 
     let msg = null;
 
+    // Checking if the browser supports text to speech
     if ('speechSynthesis' in window) {
         msg = new SpeechSynthesisUtterance();
     }
 
+    // Adding a click event to the speech button, checking if speech is supported, and speaking the summary text
     dynamicDomEvent('click', '.gpts-summary-option-speech', () => {
         const text = document.querySelector('.gpts-summary-text').innerText;
         if (msg && text) {
@@ -110,6 +122,7 @@ const speechOptionAction = () => {
             msg.rate = .7;
             setTimeout(() => {
                 const voices = window.speechSynthesis.getVoices();
+                // Checking if speech is not available for the summary text
                 if (voices.length === 0) {
                     document.querySelector('.gpts-content').scrollTop = document.querySelector('.gpts-content').scrollHeight;
                     document.querySelector('.gpts-summary-options-action').innerHTML = textErrorDom;
@@ -117,10 +130,12 @@ const speechOptionAction = () => {
             }, 10);
             window.speechSynthesis.speak(msg);
         } else {
+            // Displaying a message if the browser doesn't support text to speech
             document.querySelector('.gpts-content').scrollTop = document.querySelector('.gpts-content').scrollHeight;
             document.querySelector('.gpts-summary-options-action').innerHTML = browserNotSupportDom;
         }
     }, true, () => {
+        // Cancelling speech when the speech button is clicked again, or the options menu is closed
         if (msg) {
             window.speechSynthesis.cancel(msg);
         }
@@ -128,7 +143,9 @@ const speechOptionAction = () => {
     });
 }
 
+// The following function is responsible for translating the summary text when the translate button is clicked
 const translateOptionAction = (translateCallback) => {
+    // Creating an HTML element with the options to select the language and the submit button
     const actionDom = `<div class="gpts-summary-options-action-translate">
                             <select>
                                 <option value="">Language: </option>
@@ -215,10 +232,12 @@ const translateOptionAction = (translateCallback) => {
                             </div>
                         </div>`;
 
+    // This event listener is added to the "Translate" button. When it's clicked, the actionDom is added to the page and a change event listener is added to the select dropdown
     dynamicDomEvent('click', '.gpts-summary-option-translate', () => {
         document.querySelector('.gpts-summary-options-action').innerHTML = actionDom;
         document.querySelector('.gpts-content').scrollTop = document.querySelector('.gpts-content').scrollHeight;
 
+        // This event listener is added to the select dropdown. When it's changed, the submit button is enabled if a language is selected
         dynamicDomEvent('change', '.gpts-summary-options-action-translate select', () => {
             const select = document.querySelector('.gpts-summary-options-action-translate select');
             const submitBtn = document.querySelector('.gpts-summary-options-action-translate-submit');
@@ -231,6 +250,7 @@ const translateOptionAction = (translateCallback) => {
             }
         });
 
+        // This event listener is added to the submit button. When it's clicked and a language is selected, the callback function is executed with the selected language
         dynamicDomEvent('click', '.gpts-summary-options-action-translate-submit:not(.disabled)', () => {
             const select = document.querySelector('.gpts-summary-options-action-translate select');
             translateCallback(select.value);
@@ -240,7 +260,9 @@ const translateOptionAction = (translateCallback) => {
     });
 }
 
+// The following function is responsible for regenerating the summary text when the regenerate button is clicked
 const regenerateOptionAction = (regenerateCallback) => {
+    // This event listener is added to the "Regenerate" button. When it's clicked, the callback function is executed
     dynamicDomEvent('click', '.gpts-summary-option-regenerate', () => {
         regenerateCallback();
     });

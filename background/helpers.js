@@ -1,5 +1,6 @@
 import { app } from "./app.js";
 
+// A hash function that generates a 32-bit hash code for the given input string
 export const cyrb53 = (str, seed = 0) => {
     let h1 = 0xdeadbeef ^ seed,
         h2 = 0x41c6ce57 ^ seed;
@@ -15,10 +16,12 @@ export const cyrb53 = (str, seed = 0) => {
     return 4294967296 * (2097151 & h2) + (h1 >>> 0);
 };
 
+// A function that retrieves the data from the local storage
 export const getCache = async (key) => {
     let value = null;
     await chrome.storage.local.get([key]).then((result) => {
         if (typeof result[key] !== 'undefined') {
+            // Check if data is expired, it will be removed from the storage
             if (Date.now() - result[key].timestamp < result[key].expireTime) {
                 value = result[key].value;
                 return value;
@@ -29,6 +32,7 @@ export const getCache = async (key) => {
     return value;
 }
 
+// A function that sets the data with the given key and value to the local storage with a given expiration time
 export const setCache = async (key, value, expireTime = 10) => {
     const ttl = (60 * 1000) * expireTime;
     var now = Date.now();
@@ -40,6 +44,7 @@ export const setCache = async (key, value, expireTime = 10) => {
     await chrome.storage.local.set({ [key]: data });
 }
 
+// A function that checks whether the tab with the given tabId exists or not
 export const chromeTabExist = tabId => {
     return new Promise((resolve, reject) => {
         chrome.tabs.get(tabId, (tab) => {
@@ -52,4 +57,5 @@ export const chromeTabExist = tabId => {
     });
 }
 
+// A function that sets the value of chatGPTTabId variable in app.js to the given tabId
 export const setChatGPTTabId = tabId => app.chatGPTTabId = tabId;
