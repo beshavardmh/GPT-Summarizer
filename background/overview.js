@@ -2,7 +2,7 @@ import {app} from './app.js';
 import { GPT3BrowserTokenizer } from "./gpt3-tokenizer.js";
 
 export const generateOverview = async (contentObj) => {
-    if (!contentObj || !contentObj.textContent || !contentObj.title) {
+    if (!contentObj || !contentObj.textContent || !contentObj.title || !contentObj.lang) {
         app.states.error = true;
         app.error = 'Unfortunately, the content of this page cannot be identified!';
         return;
@@ -18,6 +18,7 @@ export const generateOverview = async (contentObj) => {
     const trimmedBpe = encodedContent.bpe.length > 2000 ? encodedContent.bpe.slice(0, 2000) : encodedContent.bpe;
 
     app.pageContentText = tokenizer.decode(trimmedBpe) + '...';
+    app.pageContentLang = contentObj.lang;
 
     app.states.overview = true;
 

@@ -31,10 +31,8 @@
     ],
     "permissions": [
         "storage",
-        "cookies",
         "tabs",
         "activeTab",
-        "scripting",
-        "contextMenus"
+        "scripting"
     ]
 }

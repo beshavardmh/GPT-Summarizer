@@ -8,7 +8,7 @@ export const generateSummary = async () => {
         app.error = 'Page content not found!';
         return;
     }
-    const prompt = `Instructions: act as a content summarizer. Your response should be in the original language of the content and provide an overview of the information presented in the content and should not include personal comments.\n\nContent: ${app.pageContentText}`;
+    const prompt = `Instructions: Summarize this content in brief in ${app.pageContentLang} language with correct grammer. Your response should be provide an overview of the information presented in the content and should not include personal comments.\n\nContent: ${app.pageContentText}`;
     const accessToken = await getAccessToken();
     if (accessToken) {
         await getConversation(prompt, accessToken);

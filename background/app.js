@@ -7,6 +7,7 @@ export const app = {
         alreadySummarized: false,
     },
     error: '',
+    pageContentLang: 'en',
     pageContentText: null,
     summaryText: null,
     extWantAuthorize: false,

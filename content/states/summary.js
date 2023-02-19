@@ -21,7 +21,7 @@ const showSummaryOptions = (translateCallback, regenerateCallback) => {
                         </svg>
                     </div>
 
-                    <div class="gpts-summary-option gpts-summary-option-speech" title="Speech">
+                    <div class="gpts-summary-option gpts-summary-option-speech" title="Speak">
                         <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path
                                 d="M27.3602 9.63599C28.196 10.4717 28.8589 11.4639 29.3112 12.5558C29.7635 13.6477 29.9963 14.8181 29.9963 15.9999C29.9963 17.1818 29.7635 18.3522 29.3112 19.4441C28.8589 20.536 28.196 21.5282 27.3602 22.3639"
