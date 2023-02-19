@@ -23,7 +23,7 @@ Or install manually as follows:
 5. Click on `Load unpacked` and select the unzipped folder.
 6. Pin the extension and use it on any page you want and enjoy!
 # How it works
-ChatGPT has not yet provided an official API for ChatGPT, and GPT-3 API is not as strong as ChatGPT and has time and token limitations.
+OpenAI has not yet provided an official API for ChatGPT, and GPT-3 API is not as strong as ChatGPT and has time and token limitations.
 
 In order to be able to use the same API on the browser side that ChatGPT itself uses, I run extension requests in the background of a ChatGPT tab in the browser (so the extension requests will be placed in your account chats).
 
