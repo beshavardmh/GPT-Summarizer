@@ -2,7 +2,7 @@ import { app, resetStates } from "./app.js";
 import { cyrb53, setChatGPTTabId, setCache } from "./helpers.js";
 import { getAccessToken, userAuthorized, isUserAuthorized, createOrUpdateAuthorizeTab } from "./authorization.js";
 import { generateOverview } from "./overview.js";
-import { generateSummary } from "./summary.js";
+import { generateSummary, translateSummary } from "./summary.js";
 
 // Define a function that executes when the extension icon is clicked
 const extIconOnClick = async (tab) => {

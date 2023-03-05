@@ -45,7 +45,7 @@ export const setCache = async (key, value, expireTime = 10) => {
 }
 
 // A function that checks whether the tab with the given tabId exists or not
-export const chromeTabExist = tabId => {
+export const chromeTabExists = tabId => {
     return new Promise((resolve, reject) => {
         chrome.tabs.get(tabId, (tab) => {
             if (chrome.runtime.lastError || !tab) {
@@ -55,6 +55,21 @@ export const chromeTabExist = tabId => {
             }
         });
     });
+}
+
+// A function that checks if there is a ChatGPT tab or not
+export const chatGPTTabExists = async() => {
+    if (await chromeTabExists(app.chatGPTTabId)) {
+        return true;
+    }
+    // It also checks all tabs which have a ChatGPT url
+    chrome.tabs.query({url: 'https://chat.openai.com/chat'}, (tabs)=>{
+        if (tabs.length) {
+            setChatGPTTabId(tabs[0].id);
+            return true;
+        }
+    });
+    return false;
 }
 
 // A function that sets the value of chatGPTTabId variable in app.js to the given tabId

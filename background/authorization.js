@@ -1,10 +1,10 @@
 import { app } from './app.js';
-import { chromeTabExist, getCache, setCache } from './helpers.js';
+import { chatGPTTabExists, getCache } from './helpers.js';
 
 // Get access token for authorized user
 export const getAccessToken = async () => {
     // Check if chatGPT tab exists
-    if (!await chromeTabExist(app.chatGPTTabId)) return false;
+    if (!await chatGPTTabExists()) return false;
 
     // Execute script to get access token
     return new Promise((resolve, reject) => {
@@ -52,7 +52,7 @@ export const createOrUpdateAuthorizeTab = async () => {
     app.extWantAuthorize = true;
 
     // If chatGPT tab does not exist, create it
-    if (!await chromeTabExist(app.chatGPTTabId)) {
+    if (!await chatGPTTabExists()) {
         chrome.tabs.create({ url: 'https://chat.openai.com/chat' });
     }
     // Otherwise, update the tab and reload it
