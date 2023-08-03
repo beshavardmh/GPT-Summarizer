@@ -1,6 +1,6 @@
 {
     "name": "GPT Summarizer",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "description": "A Chrome extension that utilizes ChatGPT to provide a summarized version of web articles.",
     "manifest_version": 3,
     "author": "M.Ho3ein Beshavard",
