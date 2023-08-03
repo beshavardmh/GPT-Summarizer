@@ -8,6 +8,13 @@ const showOverviewState = (time, words, callback) => {
                     <p>
                         The content of this page is: <b>${time} min (about ${words} words)</b>.
                     </p>
+                    <div class="gpts-summary-mode">
+                        <p>Summary Mode: </p>
+                        <select id="gpts-summary-mode">
+                            <option value="general">General</option>
+                            <option value="bullet">Bullet-Points</option>
+                        </select>
+                    </div>
                     <div class="gpts-generate-btn">
                         Summarize
                         <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -29,7 +36,9 @@ const showOverviewState = (time, words, callback) => {
 
     // Add an event listener for click on summarize button that calls a callback function
     dynamicDomEvent('click', '.gpts-generate-btn', () => {
-        callback();
+        const summaryMode = document.getElementById('gpts-summary-mode').value;
+
+        callback(summaryMode);
     });
 }
 

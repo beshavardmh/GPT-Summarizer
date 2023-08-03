@@ -10,7 +10,7 @@ const run = async () => {
 run();
 
 // Establishe a connection and send the first message to the background
-const port = chrome.runtime.connect();
+const port = chrome.runtime.connect({name: "POPUP"});
 port.postMessage({ type: 'GET_ACCESS_TOKEN' });
 
 // Listen for messages on the background.
@@ -30,8 +30,8 @@ port.onMessage.addListener(async (state) => {
             break;
         // If the message type is "OVERVIEW", this code shows an overview state with the provided time and word count, and sends a message to generate a summary
         case 'OVERVIEW':
-            showOverviewState(state.props.time, state.props.words, () => {
-                port.postMessage({ type: 'GENERATE_SUMMARY' });
+            showOverviewState(state.props.time, state.props.words, (summaryMode) => {
+                port.postMessage({ type: 'GENERATE_SUMMARY', props: { summaryMode: summaryMode } });
                 showLoadingState();
             });
             break;
@@ -49,7 +49,7 @@ port.onMessage.addListener(async (state) => {
                 port.postMessage({ type: 'TRANSLATE_SUMMARY', props: { lang: lang } });
                 showLoadingState();
             }, () => {
-                port.postMessage({ type: 'GENERATE_SUMMARY' });
+                port.postMessage({ type: 'GENERATE_SUMMARY', props: { summaryMode: null } });
                 showLoadingState();
             });
             break;

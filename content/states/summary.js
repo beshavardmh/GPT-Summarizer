@@ -3,9 +3,14 @@ const showSummaryState = (response) => {
     // Return if main popup not exists
     if (!document.querySelector('.gpts .gpts-content')) return;
 
+    response = response.replace(/'(.*?)'/g, "**$1**");
+
+    var mdResponse = marked.parse(response);
+
+
     // Create summary state DOM and put it inside the popup content
     const dom = `<div class="gpts-summary">
-                    <div class="gpts-summary-text" id="gpts-summary-text">${response}</div>
+                    <div class="gpts-summary-text" id="gpts-summary-text">${mdResponse}</div>
                 </div>`;
     document.querySelector('.gpts .gpts-content').innerHTML = dom;
 }

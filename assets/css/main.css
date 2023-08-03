@@ -122,7 +122,7 @@
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    margin: 16px auto 0 auto;
+    margin: 32px auto 0 auto;
 }
 
 .gpts-generate-btn svg {
@@ -196,6 +196,43 @@
     border-radius: 10px;
     background-color: #f8f8f8;
     user-select: text;
+}
+
+.gpts-summary-text ul, .gpts-summary-text ol {
+    margin: 0;
+}
+
+.gpts-summary-text ul li {
+    margin: 8px 0;
+    list-style-type: disc;
+    list-style-position: inside;
+    font-weight: normal;
+    font-size: 14px;
+}
+
+.gpts-summary-text ol li{
+    margin: 8px 0;
+    list-style-type: decimal;
+    list-style-position: inside;
+    font-weight: normal;
+    font-size: 14px;
+}
+
+.gpts-summary-mode {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 16px auto 0 auto;
+}
+
+.gpts-summary-mode select {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 6px;
+    font-size: 14px;
+    width: 120px;
+    text-align: center;
+    margin: 0 0 0 6px;
 }
 
 .gpts-summary-options {

@@ -1,4 +1,4 @@
-port = chrome.runtime.connect();
+port = chrome.runtime.connect({name: "CHATGPT"});
 
 conversationId = uuidv4();
 
@@ -89,8 +89,6 @@ async function run() {
     await getConversationInj();
 
     const lastConversationId = await getLastConversation();
-
-    console.log(lastConversationId);
     
     if (lastConversationId) {
         await deleteTempConversation(lastConversationId);

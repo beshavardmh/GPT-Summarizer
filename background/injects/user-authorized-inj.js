@@ -1,4 +1,4 @@
-port = chrome.runtime.connect();
+port = chrome.runtime.connect({name: "CHATGPT"});
 
 const returnContentTab = () => {
     port.postMessage({ type: 'RETURN_CONTENT_TAB' });
