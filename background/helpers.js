@@ -62,13 +62,15 @@ export const chatGPTTabExists = async() => {
     if (await chromeTabExists(app.chatGPTTabId)) {
         return true;
     }
+    
     // It also checks all tabs which have a ChatGPT url
-    chrome.tabs.query({url: 'https://chat.openai.com/chat'}, (tabs)=>{
+    chrome.tabs.query({url: 'https://chat.openai.com/'}, (tabs)=>{
         if (tabs.length) {
             setChatGPTTabId(tabs[0].id);
             return true;
         }
     });
+    
     return false;
 }
 

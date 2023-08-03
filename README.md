@@ -13,7 +13,7 @@ A Chrome extension that utilizes ChatGPT to provide a summarized version of web 
 - Regenerate summary.
 - Caching summary text of the url for 10 minutes.
 # Installation
-Install the extension from [Chrome Store](https://github.com/beshavardmh/GPT-Summarizer).
+Install the extension from [Chrome Store](https://chrome.google.com/webstore/detail/gpt-summarizer/lnooklbibhjciljoigpckbeojhgoefig).
 
 Or install manually as follows:
 1. Download or clone this repository.
@@ -23,9 +23,9 @@ Or install manually as follows:
 5. Click on `Load unpacked` and select the unzipped folder.
 6. Pin the extension and use it on any page you want and enjoy!
 # How it works
-OpenAI has not yet provided an official API for ChatGPT, and GPT-3 API is not as strong as ChatGPT and has time and token limitations.
+Currently, using the official OpenAI API is subject to a 3-month time limit and a fee for you.
 
-In order to be able to use the same API on the browser side that ChatGPT itself uses, I run extension requests in the background of a ChatGPT tab in the browser (so the extension requests will be placed in your account chats).
+In order to be able to use the same API on the browser side that ChatGPT itself uses, I used a reverse engineering trick and run extension requests in the background of a ChatGPT tab in the browser (so the extension requests will be placed in your account chats).
 
 To authorize the extension to run, do the following:
 1. On the page you want to summarize its content, click on the extension icon.

@@ -16,7 +16,7 @@ const extIconOnClick = async (tab) => {
         if (app.initialized[contentTabId]) delete app.initialized[contentTabId];
 
         // If the content tab has finished loading the ChatGPT website, set the ChatGPT tab ID
-        if (tab.url == 'https://chat.openai.com/chat' && changeInfo.status == 'complete') {
+        if (tab.url == 'https://chat.openai.com/' && changeInfo.status == 'complete') {
             setChatGPTTabId(contentTabId);
 
             // Get an access token and authorize the user if necessary
